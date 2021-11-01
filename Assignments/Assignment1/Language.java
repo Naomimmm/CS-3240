@@ -33,7 +33,7 @@ public final class Language implements Iterable<String>, java.io.Serializable {
      */
     public boolean isEmpty() {
         // Checks if the strings set is empty
-        return strings.isEmpty();
+        return strings.equals(EMPTY_SET);
     }
 
     /**
@@ -52,6 +52,11 @@ public final class Language implements Iterable<String>, java.io.Serializable {
      *         false if not in the language or the parameter is null
      */
     public boolean includes(final String candidate) {
+        // if candidate is null, return false.
+        if (candidate == null){
+            return false;
+        }
+
         // Checks if the strings set contains the candidate string
         return strings.contains(candidate);
     }
