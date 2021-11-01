@@ -1,0 +1,4 @@
+This assignment was a great learning experience and a great review of object-oriented programing principles.
+I was able to refresh my knowledge of inheritance and polymorphism by implementing the overrides of the equals and hashCode methods. Implementing the equals and hashCode methods itself was a big learning experience since I was not familiar with how to implement them. I was able to learn about the two methods in the official Object documentation.
+
+Another learning experience from this assignment was learning to use the iterator class in java. Since we did not have public access to the strings set of a language instance, I had to use the iterator in the concatenate method to be able to extract all the strings in the parameter language and add it to the concatenated language.
