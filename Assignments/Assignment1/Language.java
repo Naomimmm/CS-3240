@@ -6,7 +6,7 @@ import java.util.TreeSet;
  * Represents a finite language.
  *
  * @author Dr. Jody Paul
- * @author Noemi Marquez
+ * @author Noemi Marquez-Catano
  * @version 1.3.1
  */
 public final class Language implements Iterable<String>, java.io.Serializable {
