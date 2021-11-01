@@ -22,7 +22,8 @@ public final class Language implements Iterable<String>, java.io.Serializable {
      * Create a language with no strings.
      */
     public Language() {
-        //TODO
+        // Initializing strings set as empty set
+        strings = EMPTY_SET;
     }
 
     /**
@@ -31,8 +32,8 @@ public final class Language implements Iterable<String>, java.io.Serializable {
      *         false otherwise
      */
     public boolean isEmpty() {
-        //TODO
-        return false;
+        // Checks if the strings set is empty
+        return strings.isEmpty();
     }
 
     /**
@@ -40,8 +41,8 @@ public final class Language implements Iterable<String>, java.io.Serializable {
      * @return the cardinality of the language
      */
     public int cardinality() {
-        //TODO
-        return Integer.MIN_VALUE;
+        // Checks the size of the strings set
+        return strings.size();
     }
 
     /**
@@ -51,8 +52,8 @@ public final class Language implements Iterable<String>, java.io.Serializable {
      *         false if not in the language or the parameter is null
      */
     public boolean includes(final String candidate) {
-        //TODO
-        return false;
+        // Checks if the strings set contains the candidate string
+        return strings.contains(candidate);
     }
 
     /**
@@ -62,8 +63,8 @@ public final class Language implements Iterable<String>, java.io.Serializable {
      * @return true if this language changed as a result of the call
      */
     public boolean addString(final String memberString) {
-        //TODO
-        return false;
+        // Adds memberString to the strings set
+        return strings.add(memberString);
     }
 
     /**
@@ -73,8 +74,8 @@ public final class Language implements Iterable<String>, java.io.Serializable {
      * @return true if this language changed as a result of the call
      */
     public boolean addAllStrings(final Collection<String> memberStrings) {
-        //TODO
-        return false;
+        // adds all memberStrings in the collection to strings set
+        return strings.addAll(memberStrings);
     }
 
     /**
@@ -82,8 +83,8 @@ public final class Language implements Iterable<String>, java.io.Serializable {
      * @return an iterator over the strings in this language in ascending order
      */
     public Iterator<String> iterator() {
-        //TODO
-        return null;
+        // Returns the iterator for strings set
+        return strings.iterator();
     }
 
     /**
@@ -93,20 +94,42 @@ public final class Language implements Iterable<String>, java.io.Serializable {
      * @return the concatenation of this language with the parameter language
      */
     public Language concatenate(final Language language) {
-        //TODO
-        return null;
+        // Create a new Language instance which will contain the concatenated string set
+        Language concatenated = new Language();
+
+        // Add the string set of this instance to the concatenated language instance
+        concatenated.addAllStrings(strings);
+
+        // Get iterator for passed in language to have access to its strings set
+        Iterator<String> iterator = language.iterator();
+
+        // Using the iterator, loop through the strings in the passed in language string set
+        // and add each string to the new concatenated language string set.
+        while(iterator.hasNext()) {
+            concatenated.addString(iterator.next());
+        }
+
+        // Return the concatenated language
+        return concatenated;
     }
 
     @Override
     public boolean equals(final Object obj) {
         if (obj instanceof Language) {
-            //TODO
+            // Cast obj to Language class
+            final Language other = (Language) obj;
+
+            // If the hashCode of this language is equal to the hashCode of the passed in language,
+            // the classes are equal. Otherwise, they are not equal.
+            return hashCode() == other.hashCode();
         }
+
+        // If the passed in object is not of type Language, it cannot be equal to this language.
         return false;
     }
     @Override
     public int hashCode() {
-        //TODO
-        return Integer.MIN_VALUE;
+        // Use the hashCode of the strings set
+        return strings.hashCode();
     }
 }
