@@ -23,7 +23,7 @@ public final class Language implements Iterable<String>, java.io.Serializable {
      */
     public Language() {
         // Initializing strings set as empty set
-        strings = EMPTY_SET;
+        strings = new TreeSet<String>();
     }
 
     /**
