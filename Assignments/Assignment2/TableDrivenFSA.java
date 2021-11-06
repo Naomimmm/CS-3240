@@ -195,8 +195,23 @@ public class TableDrivenFSA implements java.io.Serializable {
      *         returns the value of the state parameter
      */
     public int nextState(final int currentState, final String inputSymbol) {
-        //TODO
-        return Integer.MIN_VALUE;
+        // Finding inputSymbol index
+        int inputIndex = -1;
+
+        for (int i = 0; i < this.alphabet.length; i++) {
+            if (this.alphabet[i].equalsIgnoreCase(inputSymbol)) {
+                inputIndex = i;
+                break;
+            }
+        }
+
+        // Check if parameters are invalid
+        if (inputIndex == -1 || currentState < 0 || currentState >= this.stateTransitionTable.length) {
+            return currentState;
+        }
+
+        // return the next state
+        return this.stateTransitionTable[currentState][inputIndex];
     }
 
     /**
@@ -205,7 +220,22 @@ public class TableDrivenFSA implements java.io.Serializable {
      * @return true if the end state is an accept state, false otherwise
      */
     public boolean processString(final String inputString) {
-        //TODO
+
+        if (inputString != null) {
+            int currentState = INITIAL_STATE;
+
+            // Reference for string splitting: https://stackoverflow.com/questions/5235401/split-string-into-array-of-character-strings
+            for (String symbol : inputString.split("(?!^)")) {
+                currentState = nextState(currentState, symbol);
+            }
+
+            for (int acceptedState : this.acceptStates){
+                if (currentState == acceptedState){
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
 }
